@@ -12,7 +12,7 @@ const Search = ({word, setWord, handleSubmit}) => {
                 <Form.Control 
                     type="text"
                     value={word} /* This maakes it a controlled component. the variable word is apart of the state of this pplication*/
-                    onChange={(e) => setWord(e.target.value)}
+                    onChange={(event) => setWord(event.target.value)}
                     placeholder="Search for New Image..." />
               </Col>
               <Col>

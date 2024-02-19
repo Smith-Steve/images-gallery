@@ -12,8 +12,6 @@ const App = () =>  {
     event.preventDefault();
     console.log(word)
   }
-
-  console.log('Word 2: ', word)
   
 
   return (
