@@ -1,15 +1,19 @@
 import React from "react";
 import { Container, Row, Col, Form, Button } from "react-bootstrap";
 
-const Search = () => {
+const Search = ({word, setWord, handleSubmit}) => {
   return (
     <Container className="mt-4">
       <Row className="justify-content-center">
         <Col xs={12} md={8}>
-          <Form>
+          <Form onSubmit={handleSubmit}>
             <Row>
               <Col xs={9}>
-                <Form.Control placeholder="Search for New Image..." />
+                <Form.Control 
+                    type="text"
+                    value={word} /* This maakes it a controlled component. the variable word is apart of the state of this pplication*/
+                    onChange={(e) => setWord(e.target.value)}
+                    placeholder="Search for New Image..." />
               </Col>
               <Col>
                 <Button variant="primary" type="submit">Search</Button>
