@@ -27,6 +27,10 @@ const App = () => {
     setWord('');
   };
 
+  const handleDeleteImage = (id) => {
+    setImages(images.filter((image) => image.id !== id));
+  };
+
   return (
     <div>
       <Header title="Images Gallery" />
@@ -35,7 +39,11 @@ const App = () => {
         <Row x={1} md={2} lg={3}>
           {images.map((image, index) => (
             <Col key={index} className="pb-3">
-              <ImageCard image={image} key={index} />
+              <ImageCard
+                image={image}
+                key={index}
+                deleteImage={handleDeleteImage}
+              />
             </Col>
           ))}
         </Row>
