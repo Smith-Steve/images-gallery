@@ -8,6 +8,7 @@ const UNSPLASH_KEY = process.env.REACT_APP_UNSPLASH_KEY;
 const App = () => {
   /* As a result of the below, 'word' is now in state of app.*/
   const [word, setWord] = useState('');
+  const [images, setImages] = useState([]);
 
   const handleSearchSubmit = (event) => {
     event.preventDefault();
@@ -17,7 +18,8 @@ const App = () => {
     )
       .then((response) => response.json())
       .then((data) => {
-        console.log(data);
+        setImages([data, ...images]);
+        /* New images will be added to a new array.*/
       })
       .catch((error) => console.log(error));
     setWord('');
