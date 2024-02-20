@@ -1,7 +1,7 @@
-import React from "react";
-import { Container, Row, Col, Form, Button } from "react-bootstrap";
+import React from 'react';
+import { Container, Row, Col, Form, Button } from 'react-bootstrap';
 
-const Search = ({word, setWord, handleSubmit}) => {
+const Search = ({ word, setWord, handleSubmit }) => {
   return (
     <Container className="mt-4">
       <Row className="justify-content-center">
@@ -9,15 +9,19 @@ const Search = ({word, setWord, handleSubmit}) => {
           <Form onSubmit={handleSubmit}>
             <Row>
               <Col xs={9}>
-                <Form.Control 
-                    id="myform"
-                    type="text"
-                    value={word} /* This maakes it a controlled component. the variable word is apart of the state of this pplication*/
-                    onChange={(event) => setWord(event.target.value)}
-                    placeholder="Search for New Image..." />
+                <Form.Control
+                  type="text"
+                  value={
+                    word
+                  } /* This maakes it a controlled component. the variable word is apart of the state of this pplication*/
+                  onChange={(event) => setWord(event.target.value)}
+                  placeholder="Search for New Image"
+                />
               </Col>
               <Col>
-                <Button variant="primary" type="submit">Search</Button>
+                <Button variant="primary" type="submit">
+                  Search
+                </Button>
               </Col>
             </Row>
           </Form>
