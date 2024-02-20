@@ -10,6 +10,7 @@ const Search = ({word, setWord, handleSubmit}) => {
             <Row>
               <Col xs={9}>
                 <Form.Control 
+                    id="myform"
                     type="text"
                     value={word} /* This maakes it a controlled component. the variable word is apart of the state of this pplication*/
                     onChange={(event) => setWord(event.target.value)}
