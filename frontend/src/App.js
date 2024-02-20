@@ -30,7 +30,9 @@ const App = () => {
     <div>
       <Header title="Images Gallery" />
       <Search handleSubmit={handleSearchSubmit} word={word} setWord={setWord} />
-      {!!images.length && <ImageCard image={images[0]} />}
+      {images.map((image, index) => (
+        <ImageCard image={image} key={index} />
+      ))}
     </div>
   );
 };
