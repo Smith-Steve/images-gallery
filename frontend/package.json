@@ -46,8 +46,6 @@
   },
   "prettier":{
     "singleQuote": true,
-    "error" : {
-      "endOfLine": "auto"
-    }
+    "endOfLine": "auto"
   }
 }

@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import Header from './components/Header';
 import Search from './components/Search';
+import ImageCard from './components/ImageCard';
 import 'bootstrap/dist/css/bootstrap.min.css';
 
 const UNSPLASH_KEY = process.env.REACT_APP_UNSPLASH_KEY;
@@ -18,7 +19,7 @@ const App = () => {
     )
       .then((response) => response.json())
       .then((data) => {
-        setImages([data, ...images]);
+        setImages([{ ...data, title: word }, ...images]);
         /* New images will be added to a new array.*/
       })
       .catch((error) => console.log(error));
@@ -29,6 +30,7 @@ const App = () => {
     <div>
       <Header title="Images Gallery" />
       <Search handleSubmit={handleSearchSubmit} word={word} setWord={setWord} />
+      {!!images.length && <ImageCard image={images[0]} />}
     </div>
   );
 };
