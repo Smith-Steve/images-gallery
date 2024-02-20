@@ -13,6 +13,7 @@ const App = () =>  {
     event.preventDefault();
     console.log(word)
   }
+  console.log(process.env);  
 
   return (
     <div>
