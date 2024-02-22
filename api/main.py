@@ -1,5 +1,8 @@
 import requests
+import os
 from flask import Flask, request
+
+os.environ
 
 UNSPLASH_URL='https://api.unsplash.com/photos/random'
 UNSPLASH_KEY="wfwiDJRSvou-SR5O8bUrbBzkDM2SbPNedptkNBEF2uw"
@@ -22,7 +25,7 @@ def new_image():
   }
   response = requests.get(url=UNSPLASH_URL, headers=headers, params=parameters)
   data = response.json()
-  return {"data": data}
+  return data
 
 
 if __name__ == "__main__":
