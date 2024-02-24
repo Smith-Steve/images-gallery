@@ -8,5 +8,12 @@
         "source.fixAll.eslint": "explicit"
     },
     "editor.tabSize": 2,
-    "python.pythonPath": "C:\\Users\\Steph\\python_tuts\\image-gallery-3\\api\\.venv\\Scripts\\python.exe"
+    "python.pythonPath": "api/.venv/Scripts/python.exe",
+    "python.linting.pycodestyleEnabled": true,
+    "python.linting.pycodestyleArgs": ["--max-line-length=88"],
+    "python.linting.pylintEnabled": true,
+    "python.formatting.provider": "black",
+    "[python]": {
+        "editor.formatOnSave": true
+    }
 }
