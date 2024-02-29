@@ -3,6 +3,7 @@ import requests
 from flask import Flask, request
 from dotenv import load_dotenv
 from flask_cors import CORS
+from mongo_cliient import insert_test_document
 
 
 load_dotenv(dotenv_path="./.env.local")
@@ -20,6 +21,8 @@ application = Flask(__name__)
 CORS(application)
 #in python, constants are uppercase.
 application.config["DEBUG"] = DEBUG
+
+insert_test_document()
 
 @application.route("/new-image")
 def new_image():
