@@ -34,6 +34,8 @@ services:
       ME_CONFIG_MONGODB_SERVER: mongo
       ME_CONFIG_MONGODB_ADMINUSERNAME: root
       ME_CONFIG_MONGODB_ADMINPASSWORD: very-strong-db-password
+      # 🚩 This is where we specify the password for Mongo Express.
+      ME_CONFIG_BASICAUTH_PASSWORD: RM4PB#*Fi6rvU@
     depends_on:
       - mongo
 
