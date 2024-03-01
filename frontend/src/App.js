@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import axios from 'axios';
 import Header from './components/Header';
 import Search from './components/Search';
 import ImageCard from './components/ImageCard';
@@ -13,16 +14,14 @@ const App = () => {
   const [word, setWord] = useState('');
   const [images, setImages] = useState([]);
 
-  const handleSearchSubmit = (event) => {
+  const handleSearchSubmit = async (event) => {
     event.preventDefault();
-    console.log(word);
-    fetch(`${API_URL}/new-image?query=${word}`)
-      .then((response) => response.json())
-      .then((data) => {
-        setImages([{ ...data, title: word }, ...images]);
-        /* New images will be added to a new array.*/
-      })
-      .catch((error) => console.log(error));
+    try {
+      const res = await axios.get(`${API_URL}/new-image?query=${word}`);
+      setImages([{ ...res.data, title: word }, ...images]);
+    } catch (error) {
+      console.log(error);
+    }
     setWord('');
   };
 
