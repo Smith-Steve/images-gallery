@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import axios from 'axios';
 import Header from './components/Header';
 import Search from './components/Search';
@@ -13,6 +13,17 @@ const App = () => {
   /* As a result of the below, 'word' is now in state of app.*/
   const [word, setWord] = useState('');
   const [images, setImages] = useState([]);
+
+  async function axiosGetImages() {
+    try {
+      const response = await axios.get(`${API_URL}/images`);
+      setImages(response.data || []);
+    } catch (error) {
+      console.log(error);
+    }
+  }
+
+  useEffect(() => axiosGetImages, []);
 
   const handleSearchSubmit = async (event) => {
     event.preventDefault();
