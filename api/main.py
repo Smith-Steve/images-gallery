@@ -66,7 +66,7 @@ def image(image_id):
       return {"ERROR": "Image was not deleted. Please try again"}, 500
     if result and not result.deleted_count:
       return {"ERROR": "Image Not Found"}, 404
-    return {"Deleted Id": image_id}
+    return {"deleted_Id": image_id}
 
 
 

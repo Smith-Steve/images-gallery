@@ -36,8 +36,18 @@ const App = () => {
     setWord('');
   };
 
-  const handleDeleteImage = (id) => {
-    setImages(images.filter((image) => image.id !== id));
+  const handleDeleteImage = async (id) => {
+    console.log('We are in the top of the handle delete function. In app.js');
+    try {
+      const response = await axios.delete(`${API_URL}/images/${id}`);
+      console.log('Outside of if block.', response.data);
+      if (response.data.deleted_Id) {
+        console.log('Were in if block');
+        setImages(images.filter((image) => image.id !== id));
+      }
+    } catch (error) {
+      console.log(error);
+    }
   };
 
   const handleSaveImage = async (id) => {

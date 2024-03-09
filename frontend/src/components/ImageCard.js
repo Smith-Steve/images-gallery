@@ -8,7 +8,13 @@ const ImageCard = ({ image, deleteImage, saveImage }) => {
       <Card.Body>
         <Card.Title>{image.color.toUpperCase()}</Card.Title>
         <Card.Text>{image.description || image.alt_description}</Card.Text>
-        <Button variant="primary" onClick={() => deleteImage(image.id)}>
+        <Button
+          variant="primary"
+          onClick={() => {
+            console.log('Image Info: ', image);
+            deleteImage(image.id);
+          }}
+        >
           Delete
         </Button>{' '}
         {!image.saved && (
