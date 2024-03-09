@@ -40,6 +40,24 @@ const App = () => {
     setImages(images.filter((image) => image.id !== id));
   };
 
+  const handleSaveImage = async (id) => {
+    const imageToBeSaved = images.find((image) => image.id === id);
+    imageToBeSaved.saved = true;
+
+    try {
+      const response = await axios.post(`${API_URL}/images`, imageToBeSaved);
+      if (response.data?.inserted_id) {
+        setImages(
+          images.map((image) =>
+            image.id === id ? { ...image, saved: true } : image,
+          ),
+        );
+      }
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
   return (
     <div>
       <Header title="Images Gallery" />
@@ -53,6 +71,7 @@ const App = () => {
                   image={image}
                   key={index}
                   deleteImage={handleDeleteImage}
+                  saveImage={handleSaveImage}
                 />
               </Col>
             ))}
