@@ -13,6 +13,7 @@ load_dotenv(dotenv_path="./.env.local")
 
 UNSPLASH_URL = 'https://api.unsplash.com/photos/random'
 UNSPLASH_KEY = os.environ.get("UNSPLASH_KEY", "")
+MONGO_URL = os.environ.get("MONGO_URL", "")
 DEBUG = bool(os.environ.get("DEBUG", True))
 
 if not UNSPLASH_KEY:
@@ -55,6 +56,18 @@ def images():
     result = images_collection.insert_one(image)
     inserted_id = result.inserted_id
     return {"inserted_id": inserted_id}
+
+@application.route("/images/<image_id>", methods=["DELETE"])
+def image(image_id):
+  if request.method == "DELETE":
+    #delete image from database
+    result = images_collection.delete_one({"_id": image_id})
+    if not result:
+      return {"ERROR": "Image was not deleted. Please try again"}, 500
+    if result and not result.deleted_count:
+      return {"ERROR": "Image Not Found"}, 404
+    return {"Deleted Id": image_id}
+
 
 
 if __name__ == "__main__":
