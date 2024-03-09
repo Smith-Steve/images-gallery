@@ -6,6 +6,8 @@ import ImageCard from './components/ImageCard';
 import Welcome from './components/Welcome';
 import { Container, Row, Col } from 'react-bootstrap';
 import Spinner from './components/Spinner';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
 
 const API_URL = process.env.REACT_APP_API_URL || 'http://127.0.0.1:5050';
@@ -21,6 +23,7 @@ const App = () => {
       const response = await axios.get(`${API_URL}/images`);
       setImages(response.data || []);
       setLoading(false);
+      toast('Saved Images Into MongoDB');
     } catch (error) {
       console.log(error);
     }
@@ -33,6 +36,7 @@ const App = () => {
     try {
       const res = await axios.get(`${API_URL}/new-image?query=${word}`);
       setImages([{ ...res.data, title: word }, ...images]);
+      toast.info(`New Image ${word.toUpperCase()} found`);
     } catch (error) {
       console.log(error);
     }
@@ -47,6 +51,7 @@ const App = () => {
       if (response.data.deleted_Id) {
         console.log('Were in if block');
         setImages(images.filter((image) => image.id !== id));
+        toast.warning('Image Removed');
       }
     } catch (error) {
       console.log(error);
@@ -65,6 +70,7 @@ const App = () => {
             image.id === id ? { ...image, saved: true } : image,
           ),
         );
+        toast.info(`Image ${imageToBeSaved.title} was saved.`);
       }
     } catch (error) {
       console.log(error);
@@ -103,6 +109,7 @@ const App = () => {
           </Container>
         </>
       )}
+      <ToastContainer position="bottom-right" />
     </div>
   );
 };
